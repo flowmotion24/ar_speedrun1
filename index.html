@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Romantische 3D Modell Webseite</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+    body {
+      background-color: #ffd1dc;
+      background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); /* Körniger Effekt */
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+      margin: 0;
+      padding-top: 50px; /* Abstand von oben */
+      overflow: hidden;
+    }
+
+    .window {
+      background-color: #c0c0c0;
+      border: 2px solid #000;
+      width: 800px;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      position: relative;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .window-header {
+      background-color: #000080;
+      color: white;
+      padding: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .window-header .buttons {
+      display: flex;
+    }
+
+    .window-header button {
+      background-color: transparent;
+      border: none;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+
+    .window-header button.minimize {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/1/1f/Windows_close_minimize_maximize_icon.png') no-repeat -48px 0;
+    }
+
+    .window-header button.maximize {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/1/1f/Windows_close_minimize_maximize_icon.png') no-repeat -32px 0;
+    }
+
+    .window-header button.close {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/1/1f/Windows_close_minimize_maximize_icon.png') no-repeat -16px 0;
+    }
+
+    .content {
+      font-family: 'Great Vibes', cursive;
+      color: white;
+    }
+
+    h1 {
+      font-size: 80pt;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+      position: relative;
+      animation: glitter 1.5s infinite;
+      background: linear-gradient(90deg, #ffffff 0%, #ffd700 50%, #ffffff 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      font-size: 40pt;
+      margin: 40px 0; /* doppelte Größe der Absätze */
+      text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+      position: relative;
+      animation: glitter 1.5s infinite;
+      background: linear-gradient(90deg, #ffffff 0%, #ffd700 50%, #ffffff 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes glitter {
+      0% {
+        background-position: 0% 0%;
+      }
+      100% {
+        background-position: 200% 200%;
+      }
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkle 2s infinite;
+    }
+
+    #model-viewer {
+      width: 100%;
+      height: 500px;
+      outline: 2px solid white;
+      filter: blur(0.5px) brightness(1.1);
+    }
+
+    .photo-window {
+      position: absolute;
+      top: 100px; /* weiter nach unten versetzt */
+      right: -250px;
+      width: 200px;
+      background-color: #c0c0c0;
+      border: 2px solid #000;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .photo-window-header {
+      background-color: #000080;
+      color: white;
+      padding: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .photo-window-header button {
+      background-color: transparent;
+      border: none;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .photo-window-header button.close {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/1/1f/Windows_close_minimize_maximize_icon.png') no-repeat -16px 0;
+    }
+
+    .photo-content img {
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 40pt;
+      }
+
+      p {
+        font-size: 20pt;
+      }
+
+      #model-viewer {
+        height: 300px;
+      }
+
+      .photo-window {
+        width: 150px;
+        right: -180px;
+      }
+    }
+
+    .popup-window {
+      position: absolute;
+      width: 150px;
+      background-color: #c0c0c0;
+      border: 2px solid #000;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .popup-window-header {
+      background-color: #000080;
+      color: white;
+      padding: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .popup-window-header .buttons {
+      display: flex;
+    }
+
+    .popup-window-header button {
+      background-color: transparent;
+      border: none;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+
+    .popup-window-header button.minimize {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/1/1f/Windows_close_minimize_maximize_icon.png') no-repeat -48px 0;
+    }
+
+    .popup-window-header button.maximize {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/1/1f/Windows_close_minimize_maximize_icon.png') no-repeat -32px 0;
+    }
+
+    .popup-window-header button.close {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/1/1f/Windows_close_minimize_maximize_icon.png') no-repeat -16px 0;
+    }
+
+    .popup-content img {
+      width: 100%;
+      height: auto;
+    }
+
+    .sparkle-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="sparkle-container"></div>
+
+  <div class="window">
+    <div class="window-header">
+      <span>Romantische 3D Modell Webseite</span>
+      <div class="buttons">
+        <button class="minimize" onclick="this.closest('.window').style.display='none'"></button>
+        <button class="maximize" onclick="this.closest('.window').style.width='100%'"></button>
+        <button class="close" onclick="window.close()"></button>
+      </div>
+    </div>
+    <div class="content">
+      <h1>heyy maus</h1>
+      <p>schön, dass du da bist <3. schau dir gerne mein modell an oder scroll bissi rum</p>
+      <p>kein stress :)</p>
+      <model-viewer id="model-viewer" src="https://github.com/USERNAME/REPOSITORY/raw/main/model.glb" alt="3D Model" ar ar-modes="scene-viewer quick-look" shadow-intensity="1" camera-controls auto-rotate></model-viewer>
+    </div>
+  </div>
+
+  <div class="popup-window" style="top: 20px; left: 20px;">
+    <div class="popup-window-header">
+      <span>Popup 1</span>
+      <div class="buttons">
+        <button class="minimize" onclick="this.closest('.popup-window').style.display='none'"></button>

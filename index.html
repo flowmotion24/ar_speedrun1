@@ -3,27 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Romantische 3D Modell Webseite</title>
+  <title>Flo Webseite diminished_reality</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
     body {
       background-color: #ffd1dc;
-      background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); /* Körniger Effekt */
+      background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      flex-direction: column;
+      align-items: center;
       height: 100vh;
       margin: 0;
-      padding-top: 50px; /* Abstand von oben */
-      overflow: hidden;
+      padding-top: 50px;
+      overflow: auto;
     }
 
     .window {
-      background-color: #c0c0c0;
+      background-color: #d7d2d2;
       border: 2px solid #000;
-      width: 800px;
+      width: 90%;
+      max-width: 800px;
       box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
       padding: 10px;
       position: relative;
@@ -56,7 +57,10 @@
     }
 
     .window-header button.minimize {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3b/Windows_minimize_icon.png');
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Windows_minimize_icon.png/600px-Windows_minimize_icon.png');
+      background-size: 14px 2px;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .window-header button.maximize {
@@ -73,20 +77,22 @@
     }
 
     h1 {
-      font-size: 70pt; /* Schriftgröße um 10pt reduziert */
+      font-size: 100pt;
       margin-bottom: 20px;
       text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
       position: relative;
       animation: glitter 1.5s infinite;
-      background: linear-gradient(90deg, #ffffff 0%, #ffd700 50%, #ffffff 100%);
+      background: linear-gradient(90deg, #f826f8 0%, #ffd700 50%, #ff17a6 100%);
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      color: rgb(255, 60, 138);
+      -webkit-text-stroke: 0.5px white;
     }
 
     p {
-      font-size: 30pt; /* Schriftgröße um 10pt reduziert */
-      margin: 40px 0; /* doppelte Größe der Absätze */
+      font-size: 20pt;
+      margin: 40px 0;
       text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
       position: relative;
       animation: glitter 1.5s infinite;
@@ -107,82 +113,42 @@
 
     @keyframes sparkle {
       0%, 100% { opacity: 0; }
-      50% { opacity: 1; transform: scale(1.5); } /* Größe der Sparkles erhöht */
+      50% { opacity: 1; transform: scale(1.5); }
     }
 
     .sparkle {
       position: absolute;
-      width: 6px; /* Größe der Sparkles erhöht */
-      height: 6px; /* Größe der Sparkles erhöht */
+      width: 13px;
+      height: 13px;
       background: white;
       border-radius: 50%;
       animation: sparkle 2s infinite;
-      filter: blur(2px); /* Bewegungsunschärfe */
+      filter: blur(2px);
     }
 
     #model-viewer {
       width: 100%;
-      height: 500px;
+      height: 300px;
       outline: 2px solid white;
       filter: blur(0.5px) brightness(1.1);
     }
 
-    .photo-window {
-      position: absolute;
-      top: 100px; /* weiter nach unten versetzt */
-      right: -250px;
-      width: 200px;
-      background-color: #c0c0c0;
-      border: 2px solid #000;
-      padding: 10px;
-      text-align: center;
+    .button-container {
+      margin-top: 20px;
     }
 
-    .photo-window-header {
-      background-color: #000080;
+    .ar-button {
+      background-color: #d6336c;
       color: white;
-      padding: 5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .photo-window-header button {
-      background-color: transparent;
+      font-size: 16pt;
+      padding: 10px 20px;
       border: none;
-      width: 16px;
-      height: 16px;
+      border-radius: 5px;
       cursor: pointer;
-      background-size: contain;
-      background-repeat: no-repeat;
     }
 
-    .photo-window-header button.close {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b5/Windows_close_icon.png');
-    }
-
-    .photo-content img {
-      width: 100%;
-      height: auto;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 40pt; /* Schriftgröße um 10pt reduziert */
-      }
-
-      p {
-        font-size: 20pt; /* Schriftgröße um 10pt reduziert */
-      }
-
-      #model-viewer {
-        height: 300px;
-      }
-
-      .photo-window {
-        width: 150px;
-        right: -180px;
-      }
+    .ar-button:hover {
+      background-color: #c2185b;
     }
 
     .popup-window {
@@ -219,7 +185,10 @@
     }
 
     .popup-window-header button.minimize {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3b/Windows_minimize_icon.png');
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Windows_minimize_icon.png/600px-Windows_minimize_icon.png');
+      background-size: 14px 2px;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .popup-window-header button.maximize {
@@ -233,6 +202,29 @@
     .popup-content img {
       width: 100%;
       height: auto;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 30pt;
+      }
+
+      p {
+        font-size: 16pt;
+      }
+
+      #model-viewer {
+        height: 200px;
+      }
+
+      .popup-window {
+        width: 130px;
+      }
+
+      .ar-button {
+        font-size: 12pt;
+        padding: 8px 16px;
+      }
     }
 
     .sparkle-container {
@@ -249,7 +241,7 @@
 
   <div class="window">
     <div class="window-header">
-      <span>Romantische 3D Modell Webseite</span>
+      <span>willkommen <3</span>
       <div class="buttons">
         <button class="minimize" onclick="this.closest('.window').style.display='none'"></button>
         <button class="maximize" onclick="this.closest('.window').style.width='100%'"></button>
@@ -260,13 +252,17 @@
       <h1>heyy maus</h1>
       <p>schön, dass du da bist <3. schau dir gerne mein modell an oder scroll bissi rum</p>
       <p>kein stress :)</p>
-      <model-viewer id="model-viewer" src="Umbra_sculpted_and_animated.glb" ios-src="Umbra_sculpted_and_animated.usdz" alt="Umbra_sculpted_and_animated" ar auto-rotate camera-controls ar-modes="webxr scene-viewer quick-look" environment-image="neutral"></model-viewer>
+      <model-viewer id="model-viewer" src="heart balloon_animation.glb" ios-src="heart balloon.usdz" alt="heart balloon_animation" ar auto-rotate camera-controls ar-modes="webxr scene-viewer quick-look" environment-image="neutral"></model-viewer>
     </div>
+  </div>
+
+  <div class="button-container">
+    <button class="ar-button" onclick="document.getElementById('model-viewer').activateAR()">Modell ansehen</button>
   </div>
 
   <div class="popup-window" style="top: 20px; left: 20px;">
     <div class="popup-window-header">
-      <span>Popup 1</span>
+      <span>my drip</span>
       <div class="buttons">
         <button class="minimize" onclick="this.closest('.popup-window').style.display='none'"></button>
         <button class="maximize" onclick="this.closest('.popup-window').style.width='100%'"></button>
@@ -280,7 +276,7 @@
 
   <div class="popup-window" style="top: 20px; right: 20px;">
     <div class="popup-window-header">
-      <span>Popup 2</span>
+      <span>my tool of choice</span>
       <div class="buttons">
         <button class="minimize" onclick="this.closest('.popup-window').style.display='none'"></button>
         <button class="maximize" onclick="this.closest('.popup-window').style.width='100%'"></button>
@@ -288,13 +284,13 @@
       </div>
     </div>
     <div class="popup-content">
-      <img src="https://i.pinimg.com/originals/71/f4/28/71f4287871bcc4565433b9800dffb91d.jpg" alt="Popup 2 Bild">
+      <img src="https://ae01.alicdn.com/kf/Sf64c0930a05c4196b4120724397a0054u.jpg" alt="Popup 2 Bild">
     </div>
   </div>
 
   <div class="popup-window" style="bottom: 20px; left: 20px;">
     <div class="popup-window-header">
-      <span>Popup 3</span>
+      <span>my work environment</span>
       <div class="buttons">
         <button class="minimize" onclick="this.closest('.popup-window').style.display='none'"></button>
         <button class="maximize" onclick="this.closest('.popup-window').style.width='100%'"></button>
@@ -302,13 +298,13 @@
       </div>
     </div>
     <div class="popup-content">
-      <img src="https://ae01.alicdn.com/kf/Sf64c0930a05c4196b4120724397a0054u.jpg" alt="Popup 3 Bild">
+      <img src="https://i.pinimg.com/originals/71/f4/28/71f4287871bcc4565433b9800dffb91d.jpg" alt="Popup 3 Bild">
     </div>
   </div>
 
   <div class="popup-window" style="bottom: 20px; right: 20px;">
     <div class="popup-window-header">
-      <span>Popup 4</span>
+      <span>my beauty oasis</span>
       <div class="buttons">
         <button class="minimize" onclick="this.closest('.popup-window').style.display='none'"></button>
         <button class="maximize" onclick="this.closest('.popup-window').style.width='100%'"></button>
@@ -344,6 +340,7 @@
         sparkleContainer.appendChild(sparkle);
       }
     }
+
     createSparkles();
   </script>
 </body>

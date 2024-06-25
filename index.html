@@ -32,45 +32,6 @@
       z-index: 10;
     }
 
-    .window-header {
-      background-color: #000080;
-      color: white;
-      padding: 5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .window-header .buttons {
-      display: flex;
-    }
-
-    .window-header button {
-      background-color: transparent;
-      border: none;
-      width: 16px;
-      height: 16px;
-      cursor: pointer;
-      margin-left: 5px;
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
-
-    .window-header button.minimize {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Windows_minimize_icon.png/600px-Windows_minimize_icon.png');
-      background-size: 14px 2px;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    .window-header button.maximize {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/63/Windows_maximize_icon.png');
-    }
-
-    .window-header button.close {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b5/Windows_close_icon.png');
-    }
-
     .content {
       font-family: 'Great Vibes', cursive;
       color: white;
@@ -240,14 +201,7 @@
   <div class="sparkle-container"></div>
 
   <div class="window">
-    <div class="window-header">
-      <span>willkommen <3</span>
-      <div class="buttons">
-        <button class="minimize" onclick="this.closest('.window').style.display='none'"></button>
-        <button class="maximize" onclick="this.closest('.window').style.width='100%'"></button>
-        <button class="close" onclick="window.close()"></button>
-      </div>
-    </div>
+    <!-- Removed the window-header -->
     <div class="content">
       <h1>heyy maus</h1>
       <p>schön, dass du da bist <3. schau dir gerne mein modell an oder scroll bissi rum</p>
@@ -258,6 +212,14 @@
 
   <div class="button-container">
     <button class="ar-button" onclick="document.getElementById('model-viewer').activateAR()">Modell ansehen</button>
+  </div>
+
+  <!-- Embed the .mov video file -->
+  <div class="window" style="margin-top: 20px;">
+    <video controls width="100%" style="max-width: 800px;">
+      <source src="https://raw.githubusercontent.com/flowmotion24/ar_speedrun1/main/vorstellung 3d semesterprojekt.mov" type="video/quicktime">
+      Your browser does not support the video tag.
+    </video>
   </div>
 
   <div class="popup-window" style="top: 20px; left: 20px;">
